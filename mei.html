@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MEI Fitokozmetikumok | GMS Kozmetika</title>
+  <meta name="description" content="MEI fitokozmetikumok: 100%-ban organikus összetevők, GMP gyártás, gyógyszerkönyvi tanúsítvány, bőrbarát és fenntartható csomagolás.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root{--brand:#B76E79;--ink:#fff;--text:#2b2224;--muted:#67575a;--card:#fff;--line:rgba(183,110,121,.18);--mint:#edf5ef}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Montserrat',sans-serif;color:var(--text);background:linear-gradient(180deg,#fefcfb 0%,#f8f2f1 100%)}
+    a{color:inherit;text-decoration:none}
+
+    .site-header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:transparent}
+    .site-header::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,0);backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0);box-shadow:0 0 0 rgba(0,0,0,0);transition:all .4s ease;z-index:-1}
+    .site-header.is-scrolled::before{background:rgba(30,20,22,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,.12)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:1.5rem clamp(1.25rem,4vw,3rem);transition:padding .4s ease}
+    .site-header.is-scrolled .header-inner{padding-block:.9rem}
+    .logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);position:relative;z-index:1002}
+    .logo span{color:var(--brand)}
+    .nav-list{display:flex;gap:clamp(1.2rem,2.8vw,2.6rem);list-style:none;margin:0;padding:0}
+    .nav-list a{color:var(--ink);font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;padding:.4rem 0;background:linear-gradient(var(--brand),var(--brand)) left bottom/0 1px no-repeat;transition:background-size .3s ease-in-out}
+    .nav-list a:hover,.nav-list a:focus-visible,.nav-list a[aria-current="page"]{background-size:100% 1px}
+    .nav-toggle{display:none;position:relative;z-index:1002;width:44px;height:44px;background:none;border:0;cursor:pointer}
+    .nav-toggle span{position:absolute;left:10px;width:24px;height:1.5px;background:var(--ink);transition:transform .4s ease,opacity .3s ease,top .4s ease}
+    .nav-toggle span:nth-child(1){top:15px}.nav-toggle span:nth-child(2){top:21px}.nav-toggle span:nth-child(3){top:27px}
+    .nav-toggle[aria-expanded="true"] span:nth-child(1){top:21px;transform:rotate(45deg)}
+    .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .nav-toggle[aria-expanded="true"] span:nth-child(3){top:21px;transform:rotate(-45deg)}
+    @media (max-width:768px){
+      .nav-toggle{display:block}
+      .site-nav{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(80vw,360px);background:rgba(30,20,22,.96);display:flex;align-items:center;justify-content:center;transform:translateX(100%);visibility:hidden;transition:transform .5s cubic-bezier(.77,0,.18,1),visibility 0s .5s;z-index:1001}
+      .site-nav.is-open{transform:translateX(0);visibility:visible;transition:transform .5s cubic-bezier(.77,0,.18,1)}
+      .nav-list{flex-direction:column;align-items:center;gap:2rem}
+      .nav-list a{font-size:.95rem}
+    }
+
+    main{padding-top:88px}
+    .hero{position:relative;min-height:58vh;display:flex;align-items:flex-end;color:#fff;padding:7rem clamp(1.25rem,4vw,3rem) 4rem;background:#2f2628 url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1900&q=80') center/cover no-repeat}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,16,18,.45) 0%,rgba(24,16,18,.82) 100%)}
+    .hero-inner{position:relative;max-width:1120px;width:100%;margin:0 auto}
+    .eyebrow{margin:0 0 .9rem;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;opacity:.9}
+    .hero h1{margin:0 0 1rem;font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,6vw,4.8rem);line-height:1.05;font-weight:500}
+    .hero p{max-width:760px;margin:0;color:rgba(255,255,255,.92);line-height:1.8}
+
+    .tabs{max-width:1120px;margin:-2rem auto 0;padding:0 clamp(1.25rem,4vw,3rem);position:relative;z-index:2}
+    .tabs-inner{background:#fff;border:1px solid var(--line);display:flex;gap:.8rem;flex-wrap:wrap;padding:1rem;box-shadow:0 14px 38px rgba(73,49,55,.12)}
+    .pill{padding:.65rem 1rem;border:1px solid var(--line);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+    .pill.is-active{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+    .section{max-width:1120px;margin:0 auto;padding:3.2rem clamp(1.25rem,4vw,3rem)}
+    .grid{display:grid;grid-template-columns:1fr;gap:1.4rem}
+    @media(min-width:860px){.grid{grid-template-columns:1.1fr .9fr}}
+    .card{background:var(--card);border:1px solid var(--line);box-shadow:0 10px 28px rgba(70,45,51,.08)}
+    .card-body{padding:1.35rem 1.2rem 1.5rem}
+    @media(min-width:740px){.card-body{padding:1.9rem 1.8rem 2rem}}
+    .card h2{margin:0 0 .7rem;font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600}
+    .card p{margin:0;color:var(--muted);line-height:1.8}
+    .card p + p{margin-top:.8rem}
+
+    .media{height:100%;min-height:340px;background:#ddd}
+    .media img{width:100%;height:100%;display:block;object-fit:cover}
+
+    .list-wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4.5rem}
+    .list-card{background:var(--mint);border:1px solid rgba(113,155,125,.2);padding:1.3rem 1.2rem 1.4rem}
+    .list-card h3{margin:0 0 .8rem;font-family:'Cormorant Garamond',serif;font-size:clamp(1.55rem,2.5vw,2rem);font-weight:600;color:#27402e}
+    .list-card ul{margin:0;padding-left:1.1rem;display:grid;gap:.45rem}
+    .list-card li{line-height:1.7;color:#2f5340}
+
+    .dual{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem}
+    @media(min-width:860px){.dual{grid-template-columns:1fr 1fr}}
+    .mini{background:#fff;border:1px solid var(--line);padding:1.2rem}
+    .mini h4{margin:0 0 .5rem;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:#5d474d}
+    .mini p{margin:0;color:var(--muted);line-height:1.75}
+
+    .cta{max-width:1120px;margin:0 auto 4.5rem;padding:0 clamp(1.25rem,4vw,3rem)}
+    .cta-inner{background:#1f1719;color:#fff;padding:2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+    .cta-inner p{margin:0;color:#f1e6e8;line-height:1.7}
+    .btn{display:inline-block;border:1px solid #fff;padding:.75rem 1.25rem;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;transition:all .3s ease}
+    .btn:hover,.btn:focus-visible{background:var(--brand);border-color:var(--brand)}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a href="index.html#hero" class="logo" aria-label="GMS Kozmetika – főoldal">GMS<span>.</span> Kozmetika</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü megnyitása">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Főmenü">
+        <ul class="nav-list">
+          <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+          <li><a href="index.html#rolunk">Rólunk</a></li>
+          <li><a href="index.html#termekeink" aria-current="page">Termékeink</a></li>
+          <li><a href="index.html#galeria">Galéria</a></li>
+          <li><a href="index.html#kapcsolat">Kapcsolat</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">MEI fitokozmetikumok</p>
+        <h1>100% természetes, tudatos bőrápolás</h1>
+        <p>Natúrkozmetikumból ma már rengeteg van, de valóban 100%-ig természetes kozmetikumból, mint a MEI, alig. A MEI mögött nem trendek, hanem szigorú minőségi elvek állnak.</p>
+      </div>
+    </section>
+
+    <section class="tabs" aria-label="Termékcsaládok navigáció">
+      <div class="tabs-inner">
+        <a class="pill is-active" href="mei.html">MEI</a>
+        <a class="pill" href="gms.html">GMS</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <h2>Mitől különleges a MEI?</h2>
+            <p>A MEI fitokozmetikumok fejlesztése a tiszta, organikus összetételre és a bőrbarát működésre épül. A cél nem a gyors trendkövetés, hanem a hosszú távon megbízható, minőségi bőrápolás.</p>
+            <p>Minden formula mögött szigorúan ellenőrzött gyártási és minősítési háttér áll, ezért a MEI ideális választás azoknak, akik tudatosan választanak természetes kozmetikumot.</p>
+          </div>
+        </article>
+        <figure class="card media">
+          <img src="https://images.unsplash.com/photo-1556229010-aa3f7ff66b24?auto=format&fit=crop&w=1400&q=80" alt="MEI inspirációjú natúr kozmetikumok elegáns elrendezésben" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <section class="list-wrap" aria-label="MEI minőségi jellemzők">
+      <article class="list-card">
+        <h3>A MEI minőségi alapelvei</h3>
+        <ul>
+          <li>ISO 22716 GMP minősítésű gyártás</li>
+          <li>100%-ban organikus összetevők</li>
+          <li>Kézzel szedett vadon növő gyógynövényekből készült formulák</li>
+          <li>Hivatalos Gyógyszerkönyvi tanúsítvány</li>
+          <li>Nikkelmentes összetétel</li>
+          <li>Ásványi olajok, parabének, SLS, SLES és PEG nélkül</li>
+          <li>Bőrgyógyászatilag tesztelt formulák</li>
+          <li>Fenntartható FSC és RPET csomagolás</li>
+        </ul>
+      </article>
+
+      <div class="dual">
+        <article class="mini">
+          <h4>Tiszta formula</h4>
+          <p>A MEI olyan összetevőpolitikát követ, amely a bőr természetes egyensúlyát támogatja, miközben kizárja a felesleges irritáló komponenseket.</p>
+        </article>
+        <article class="mini">
+          <h4>Felelős csomagolás</h4>
+          <p>A fenntartható csomagolási megoldásokkal a márka nemcsak a bőrre, hanem a környezetre is figyelmet fordít.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta" aria-label="Kapcsolatfelvétel">
+      <div class="cta-inner">
+        <p>Ha szeretné, hogy a kezelése során MEI termékekkel dolgozzunk, jelezze időpontfoglaláskor.</p>
+        <a class="btn" href="index.html#kapcsolat">Kapcsolat</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var header = document.getElementById('header');
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+
+      function onScroll() {
+        header.classList.toggle('is-scrolled', window.scrollY > 50);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      function setMenu(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Menü bezárása' : 'Menü megnyitása');
+        nav.classList.toggle('is-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      toggle.addEventListener('click', function () {
+        setMenu(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setMenu(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+          setMenu(false);
+          toggle.focus();
+        }
+      });
+
+      window.matchMedia('(min-width:769px)').addEventListener('change', function () {
+        setMenu(false);
+      });
+    })();
+  </script>
+</body>
+</html>

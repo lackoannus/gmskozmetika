@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Szolgáltatások | GMS Kozmetika</title>
+  <meta name="description" content="A GMS Kozmetika szolgáltatásai: tartós szőrtelenítés SHR + E-light technológiával, valamint gyümölcssavas arckezelés LGMP dermoaktív peelinggel.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root{--brand:#B76E79;--ink:#fff;--text:#2b2224;--muted:#6b5a5d;--bg:#f8f3f2;--card:#fff;--line:rgba(183,110,121,.18)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Montserrat',sans-serif;color:var(--text);background:linear-gradient(180deg,#fdfafa 0%,#f7efee 100%)}
+    a{color:inherit;text-decoration:none}
+
+    .site-header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:transparent}
+    .site-header::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,0);backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0);box-shadow:0 0 0 rgba(0,0,0,0);transition:all .4s ease;z-index:-1}
+    .site-header.is-scrolled::before{background:rgba(30,20,22,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,.12)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:1.5rem clamp(1.25rem,4vw,3rem);transition:padding .4s ease}
+    .site-header.is-scrolled .header-inner{padding-block:.9rem}
+    .logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);position:relative;z-index:1002}
+    .logo span{color:var(--brand)}
+    .nav-list{display:flex;gap:clamp(1.5rem,3vw,3rem);list-style:none;margin:0;padding:0}
+    .nav-list a{color:var(--ink);font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;padding:.4rem 0;background:linear-gradient(var(--brand),var(--brand)) left bottom/0 1px no-repeat;transition:background-size .3s ease-in-out}
+    .nav-list a:hover,.nav-list a:focus-visible,.nav-list a[aria-current="page"]{background-size:100% 1px}
+    .nav-toggle{display:none;position:relative;z-index:1002;width:44px;height:44px;background:none;border:0;cursor:pointer}
+    .nav-toggle span{position:absolute;left:10px;width:24px;height:1.5px;background:var(--ink);transition:transform .4s ease,opacity .3s ease,top .4s ease}
+    .nav-toggle span:nth-child(1){top:15px}.nav-toggle span:nth-child(2){top:21px}.nav-toggle span:nth-child(3){top:27px}
+    .nav-toggle[aria-expanded="true"] span:nth-child(1){top:21px;transform:rotate(45deg)}
+    .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .nav-toggle[aria-expanded="true"] span:nth-child(3){top:21px;transform:rotate(-45deg)}
+    @media (max-width:768px){
+      .nav-toggle{display:block}
+      .site-nav{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(80vw,360px);background:rgba(30,20,22,.96);display:flex;align-items:center;justify-content:center;transform:translateX(100%);visibility:hidden;transition:transform .5s cubic-bezier(.77,0,.18,1),visibility 0s .5s;z-index:1001}
+      .site-nav.is-open{transform:translateX(0);visibility:visible;transition:transform .5s cubic-bezier(.77,0,.18,1)}
+      .nav-list{flex-direction:column;align-items:center;gap:2rem}
+      .nav-list a{font-size:.95rem}
+    }
+
+    main{padding-top:88px}
+    .hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;color:#fff;padding:7rem clamp(1.25rem,4vw,3rem) 4rem;background:#3b2d31 url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,14,16,.58) 0%,rgba(24,14,16,.78) 100%)}
+    .hero-inner{position:relative;max-width:1120px;width:100%;margin:0 auto}
+    .hero h1{margin:0 0 1rem;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.2rem,6vw,4.6rem);line-height:1.05}
+    .hero p{max-width:800px;margin:0;line-height:1.8;color:rgba(255,255,255,.92)}
+    .quick-nav{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.7rem}
+    .quick-nav a{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.45);padding:.55rem .8rem;transition:all .3s ease}
+    .quick-nav a:hover,.quick-nav a:focus-visible{background:var(--brand);border-color:var(--brand)}
+
+    .services{max-width:1180px;margin:0 auto;padding:clamp(2rem,5vw,4rem) clamp(1.25rem,4vw,3rem) 5rem;display:flex;flex-direction:column;gap:1.4rem}
+    .service-card{background:var(--card);border:1px solid var(--line);display:grid;grid-template-columns:1fr;overflow:hidden;box-shadow:0 12px 36px rgba(70,45,51,.08)}
+    .service-media{min-height:260px;aspect-ratio:16/10}
+    .service-media img{width:100%;height:100%;object-fit:cover;display:block}
+    .service-content{padding:1.5rem 1.2rem 1.7rem;display:flex;flex-direction:column;gap:.95rem}
+    .service-card h2{margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.7rem,3vw,2.3rem)}
+    .meta{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:#8b767b}
+    .service-card p{margin:0;color:var(--muted);line-height:1.8;font-size:.96rem}
+    .service-card ul{margin:0;padding-left:1.1rem;color:var(--muted)}
+    .service-card li{margin:.38rem 0;line-height:1.7}
+    .service-card strong{color:#4b383d}
+    @media (min-width:900px){
+      .service-card{grid-template-columns:minmax(260px,42%) 1fr}
+      .service-card:nth-child(even) .service-media{order:2}
+      .service-content{padding:2rem 2rem 2.1rem}
+    }
+
+    .cta-wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4.5rem}
+    .cta{background:#1f1719;color:#fff;padding:2rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+    .cta p{margin:0;line-height:1.7;color:#f0e9eb}
+    .btn{display:inline-block;border:1px solid #fff;padding:.75rem 1.25rem;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;transition:all .3s ease}
+    .btn:hover,.btn:focus-visible{background:var(--brand);border-color:var(--brand)}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a href="index.html#hero" class="logo" aria-label="GMS Kozmetika – főoldal">GMS<span>.</span> Kozmetika</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü megnyitása">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Főmenü">
+        <ul class="nav-list">
+          <li><a href="szolgaltatasok.html" aria-current="page">Szolgáltatások</a></li>
+          <li><a href="index.html#about-and-products">Rólunk</a></li>
+          <li><a href="index.html#termekeink">Termékeink</a></li>
+          <li><a href="index.html#galeria">Galéria</a></li>
+          <li><a href="index.html#kapcsolat">Kapcsolat</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Szolgáltatások bevezető">
+      <div class="hero-inner">
+        <h1>Szolgáltatások</h1>
+        <p>Kezeléseinket személyes bőrdiagnosztika előzi meg, így minden protokoll a bőrállapotához és céljaihoz igazodik. Itt röviden áttekintheti a fő szolgáltatásokat, lejjebb pedig részletesen olvashat róluk.</p>
+        <div class="quick-nav">
+          <a href="#tartos-szortelenites">Tartós szőrtelenítés</a>
+          <a href="#gyumolcssavas-arckezeles">Gyümölcssavas arckezelés</a>
+          <a href="#dermoaktiv-peeling">Dermoaktív peeling</a>
+          <a href="#hidroabrazio">Hidroabrázió</a>
+          <a href="#tartos-szortelenites-gyanta-vs-borotva">Gyanta vs. borotva</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" aria-label="Szolgáltatások listája">
+      <article class="service-card" id="tartos-szortelenites">
+        <div class="service-media"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=1200&q=80" alt="Tartós szőrtelenítő kezelés közben" loading="lazy"></div>
+        <div class="service-content">
+          <h2>Tartós szőrtelenítés</h2>
+          <div class="meta">SHR + E-light technológia</div>
+          <p>A készülék mágneses-optikai rendszere két részből áll. Az egyik a SHR fotoepiláció a gyors és fájdalommentes munkavégzéshez, a másik pedig a nagy teljesítményű E-light terápia, amely 2 energia (IPL és RF) erejét kombinálja a nagyobb hatékonyság érdekében.</p>
+          <p><strong>A SHR a következő technológiákat egyesíti:</strong></p>
+          <ul>
+            <li><strong>AFT technológia (Advanced Fluorescence Technology):</strong> a speciálisan beépített szűrő nem engedi át az ultraibolya és infravörös sugarakat, amelyek elnyelik a bőr víztartalmát, fájdalmat és égést okozva.</li>
+            <li><strong>EDF technológia (Equally Distributed Fluence):</strong> alacsony és állandó energiaszintet, valamint egyenletesen eloszló energiasűrűséget használ. A számos, alacsony energiájú fényimpulzus sokkal hatékonyabb, mint a magas és rövid energiaszintek.</li>
+            <li><strong>In Motion (mozgás közben):</strong> magas hatékonysági szint a szöveten többször áthaladó energia miatt. Tartósan eltávolítja a világos szőrzet széles skáláját.</li>
+          </ul>
+          <p><strong>E-light:</strong> bizonyított technológia minden bőrtípus kezelésére. Az IPL-lel (intenzív pulzáló fény) ellentétben itt a fény kétpólusú RF-fel (rádiófrekvencia) kombinálódik. E két technológia szinergiája lehetővé teszi a kívánt célstruktúrák (szőr, kapillárisok, foltok, akne, tág pórusok stb.) pontosabb célzását és az energia mélyebb behatolását. A technológia lényege abban áll, hogy a rádiófrekvencia előzetesen felmelegíti a célstruktúrákat, és ezáltal a fényenergiát a test vagy az arc kívánt területére irányítja. Kevesebb kezeléssel érhető el a kívánt hatás.</p>
+          <p><strong>Mi az a SHR?</strong> A SHR jelentése "Super Hair Removal" (Szuper Gyors Epiláció) – új technológia, amelyet a szőrzet tartós eltávolítására használnak. A SHR az "inmotion" (mozgás közben) módszeren alapul, amely lehetővé teszi az epilációs terület pontosabb kezelését. A rendszer ötvözi a lézertechnológiát és a pulzáló fény módszerének előnyeit, gyakorlatilag fájdalommentes eredményt érve el. Ezen felül a SHR közvetlenül a bőrön keresztül hat azokra az őssejtekre, amelyek új szőrtüszőket hoznak létre.</p>
+          <p><strong>A SHR készülék előnyei:</strong></p>
+          <ul>
+            <li>Nem invazív, fájdalommentes.</li>
+            <li>Fájdalommentes: E-light és SHR technológiát használ. A kezelőfej folyamatosan és gyorsan, valamint egyes impulzusok formájában is képes impulzusokat kibocsátani.</li>
+            <li>Biztonság: az E-light technológia hatékonyan elkerüli a vakító fény mellékhatásait, miközben csökkenti a munkavégzés bonyolultságát.</li>
+            <li>Hatás: a kezelésre alkalmas páciensek köre széles, az azonnali hatás látványosabb, a hosszú távú eredmény pedig tartósabb.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="service-card" id="gyumolcssavas-arckezeles">
+        <div class="service-media"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80" alt="Gyümölcssavas arckezelés előkészítése" loading="lazy"></div>
+        <div class="service-content">
+          <h2>Gyümölcssavas arckezelés</h2>
+          <div class="meta">LGMP dermoaktív peeling • pH 1</div>
+          <p>Nem minden peeling egyforma. Az LGMP dermoaktív peeling nem egy „szimpla sav”.</p>
+          <p><strong>Különlegessége:</strong> négy különböző sav összehangolt kombinációjára épül.</p>
+          <ul>
+            <li>Tejsav 20%</li>
+            <li>Mandulasav 15%</li>
+            <li>Glikolsav 15%</li>
+            <li>Piruvinsav 10%</li>
+          </ul>
+          <p>Valódi bőrmegújítást indít el, még olyan nehezen kezelhető problémák esetén is, mint:</p>
+          <ul>
+            <li>fénykárosodott bőr</li>
+            <li>mély ráncok</li>
+            <li>pigmentfoltok</li>
+            <li>hegek</li>
+          </ul>
+          <p>Ez a kezelés azoknak a vendégeknek szól, akik látványos eredményt szeretnének, de nem szeretnének tűs vagy invazív eljárást.</p>
+        </div>
+      </article>
+
+      <article class="service-card" id="dermoaktiv-peeling">
+        <div class="service-media"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=80" alt="Dermoaktív peeling kezelés a szalonban" loading="lazy"></div>
+        <div class="service-content">
+          <h2>Dermoaktív peeling kezelés</h2>
+          <div class="meta">Személyre szabott bőrmegújítás</div>
+          <p><strong>Miért olyan különleges egy dermoaktív peeling kezelés?</strong></p>
+          <ul>
+            <li>Az alacsony pH-érték és a magas savkoncentráció miatt képes a bőr mélyebb rétegeibe felszívódni, és ott beindítani a bőr önregenerációját.</li>
+            <li>Teljesen bőrállapotra szabható: nem ugyanazt a savat használjuk egy aknés bőrön és egy pigmentfolton.</li>
+            <li>A peelingek a bőrproblémának megfelelő aktív hatóanyagokat is bejuttatnak a bőr mélyére.</li>
+          </ul>
+          <p><strong>Ami a legfontosabb:</strong> nem okoz kellemetlen tüneteket, a bőrérzet komfortos marad.</p>
+          <p><strong>Bejelentkezés:</strong> <a href="tel:+36308562767">+36 30 856 2767</a> telefonszámon vagy bármilyen üzenetküldő felületen.</p>
+        </div>
+      </article>
+
+      <article class="service-card" id="hidroabrazio">
+        <div class="service-media"><img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=1200&q=80" alt="Hidroabráziós bőrkezelés eszközzel" loading="lazy"></div>
+        <div class="service-content">
+          <h2>Hidroabrázió</h2>
+          <div class="meta">Mélytisztítás és hatóanyagbevitel</div>
+          <p>A hidroabrázió vízsugárral történő bőrcsiszolás, amely mélyen ható tisztítást tesz lehetővé és elősegíti a sejtregenerációt.</p>
+          <p>A kezelés célja az elhalt hámsejtek eltávolítása, a bőr önmegújító folyamatainak támogatása, a keringés és az oxigénellátás javítása, ezt követően pedig a bőrtípusnak megfelelő hatóanyag bejuttatása a bőr mélyebb rétegeibe.</p>
+          <p>Kérhető kezelés részeként vagy önmagában, hatóanyag-bevitellel.</p>
+          <p>#hidroabrázió #bőrcsiszolás #kozmetika #szolnok #kozmetikus #bőrápolás #skincare #nyáronislehet</p>
+          <p><strong>Cím:</strong> Szolnok, Tófenék utca 11</p>
+          <p><strong>Telefon:</strong> <a href="tel:+36709494953">+36 70 949 4953</a></p>
+        </div>
+      </article>
+
+      <article class="service-card" id="tartos-szortelenites-gyanta-vs-borotva">
+        <div class="service-media"><img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=1200&q=80" alt="E-light technológiás tartós szőrtelenítés" loading="lazy"></div>
+        <div class="service-content">
+          <h2>Tartós szőrtelenítés – gyanta vs. borotva</h2>
+          <div class="meta">E-light (IPL + RF) tapasztalat alapú tájékoztató</div>
+          <p><strong>Gyanta vagy borotva után hatásosabb az E-light (IPL + RF) tartós szőrtelenítés?</strong> Mindkettő egyformán hatásos.</p>
+          <p>Tapasztalatból: közel 20 éve dolgozom IPL technológiával, jelenleg új E-light készülékkel (3. gép). Meglévő és új vendégekkel is nagyon jó eredmények születtek gyantázás és/vagy borotva utáni villantásnál is. Az új gép bevezetését 1 napos elméleti és gyakorlati oktatás előzte meg.</p>
+          <p>Ha eddig gyantáztattál, <strong>nem kell leborotválnod</strong> a kezelendő felületet.</p>
+          <p>Az IPL + RF a szelektív fototermolízis elvén működik: a leadott villanás során a fényenergia a szőrszál melaninjában nyelődik el, majd a szőr mint vezető továbbítja azt a szőrtüsző gyökeréhez. Itt a mátrixsejteket (az új szőrszálak képzéséért felelős osztódó sejteket) károsítja, a fehérje kicsapódik kb. 60–70 °C-on, így a tüsző nem tud életképes, vastag és sötét új szőrszálat létrehozni.</p>
+          <p><strong>E-light technológia:</strong> az IPL és az RF kombinációja alacsonyabb energiaszint mellett is hatékonyabb eredményt ad. Az optikai és elektromos pulzus együtt nagyobb, fókuszáltabb termo-hatást biztosít a célterületen, miközben csökken az égés és a káros mellékhatások kockázata.</p>
+          <p>Az RF energia melanin hiányában is képes felmelegíteni a szőrtüszőt és a gyökeret, ezért kevésbé bőrtípus-függő, és főleg barnult bőrnél is kisebb sérülési kockázatot jelenthet. Emellett kedvező hatású lehet ránccsökkentés, bőrfeszesítés és bőrfiatalítás terén is.</p>
+          <p>Összességében ez jobb eredményeket, nagyobb vendégkomfortot és magasabb biztonságot jelenthet, miközben a kezelési eredmények is jobban tervezhetők.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="cta-wrap" aria-label="Időpontfoglalás">
+      <div class="cta">
+        <p>Kérjen személyre szabott javaslatot és foglaljon időpontot a kívánt kezelésre.</p>
+        <a class="btn" href="tel:+36000000000">Időpontfoglalás telefonon</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var header = document.getElementById('header');
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+
+      function onScroll() {
+        header.classList.toggle('is-scrolled', window.scrollY > 50);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      function setMenu(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Menü bezárása' : 'Menü megnyitása');
+        nav.classList.toggle('is-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      toggle.addEventListener('click', function () {
+        setMenu(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setMenu(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+          setMenu(false);
+          toggle.focus();
+        }
+      });
+
+      window.matchMedia('(min-width:769px)').addEventListener('change', function () {
+        setMenu(false);
+      });
+    })();
+  </script>
+</body>
+</html>
