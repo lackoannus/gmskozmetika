@@ -73,8 +73,9 @@
     .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,12,14,.55) 0%,rgba(20,12,14,.35) 50%,rgba(20,12,14,.65) 100%)}
     .hero{background-image:var(--hero-image,none)}
     .hero-content{max-width:900px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
     .hero-eyebrow{font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;margin:0 0 1.5rem;opacity:.85}
-    .hero h1{font-family:var(--font-serif);font-weight:500;font-size:clamp(2.5rem,7vw+.5rem,6.5rem);line-height:1.05;letter-spacing:.01em;margin:0 0 1.5rem}
+    .hero h1{font-family:var(--font-serif);color:inherit;font-weight:500;font-size:clamp(2.5rem,7vw+.5rem,6.5rem);line-height:1.05;letter-spacing:.01em;margin:0 0 1.5rem}
     .hero h1 em{font-style:italic;color:#e7b9c0}
     .hero-sub{font-weight:300;font-size:clamp(1rem,1.2vw+.7rem,1.25rem);line-height:1.7;max-width:620px;margin:0 auto 2.5rem;opacity:.92}
     .btn{display:inline-block;padding:1rem 2.8rem;border:1px solid var(--ink);color:var(--ink);font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;background:linear-gradient(var(--brand),var(--brand)) center/0 100% no-repeat;transition:background-size .3s ease-in-out,border-color .3s ease-in-out}
@@ -96,6 +97,7 @@
       <nav class="site-nav" id="site-nav" aria-label="Főmenü">
         <ul class="nav-list">
           <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+          <li><a href="arlista.html">Árlista</a></li>
           <li><a href="#rolunk">Rólunk</a></li>
           <li><a href="#termekeink">Termékeink</a></li>
           <li><a href="#galeria">Galéria</a></li>
@@ -112,7 +114,10 @@
         <p class="hero-eyebrow">GMS Kozmetika</p>
         <h1>A bőr szépsége <em>a törődésben</em> rejlik</h1>
         <p class="hero-sub">Személyre szabott arc- és testkezelések prémium hatóanyagokkal, nyugodt környezetben – hogy Ön magabiztosan, ragyogó bőrrel léphessen ki tőlünk.</p>
-        <a href="#kapcsolat" class="btn">Elérhetőség</a>
+        <div class="hero-actions">
+          <a href="#kapcsolat" class="btn">Elérhetőség</a>
+          <a href="arlista.html" class="btn">Árlista</a>
+        </div>
       </div>
     </section>
 
@@ -135,6 +140,9 @@
         .service-body p{margin:0 0 1.5rem;font-weight:300;font-size:.95rem;line-height:1.7;color:#6b5a5d;flex:1}
         .service-body .btn{color:var(--brand);border-color:var(--brand);padding:.8rem 2rem}
         .service-body .btn:hover,.service-body .btn:focus-visible{color:#fff}
+        #services-preview .services-more{text-align:center;margin-top:3rem}
+        #services-preview .services-more .btn{color:var(--brand);border-color:var(--brand)}
+        #services-preview .services-more .btn:hover,#services-preview .services-more .btn:focus-visible{color:#fff}
         @media (max-width:360px){#services-preview .services-grid{grid-template-columns:1fr}}
         @media (prefers-reduced-motion:reduce){.service-card{opacity:1;transform:none}}
       </style>
@@ -182,6 +190,9 @@
               <a href="szolgaltatasok.html#tartos-szortelenites-gyanta-vs-borotva" class="btn">Részletek</a>
             </div>
           </article>
+        </div>
+        <div class="services-more">
+          <a href="arlista.html" class="btn">Árlista megtekintése</a>
         </div>
       </div>
       <script>
@@ -568,6 +579,7 @@
         <div class="footer-col">
           <a href="#" class="footer-logo" aria-label="GMS Kozmetika – kezdőlap">GMS <span>Kozmetika</span></a>
           <p>Természetes szépség, professzionális törődéssel – minden vendégünk számára.</p>
+          <p style="margin-top:1rem"><a href="arlista.html">Árlista megtekintése &rarr;</a></p>
         </div>
         <div class="footer-col">
           <h3 class="footer-title">Kapcsolat</h3>

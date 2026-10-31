@@ -39,12 +39,12 @@
       .nav-list a{font-size:.95rem}
     }
 
-    main{padding-top:88px}
+    main{padding-top:0}
     .hero{position:relative;min-height:58vh;display:flex;align-items:flex-end;color:#fff;padding:7rem clamp(1.25rem,4vw,3rem) 4rem;background:#2f2628 url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1900&q=80') center/cover no-repeat}
     .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,16,18,.45) 0%,rgba(24,16,18,.82) 100%)}
     .hero-inner{position:relative;max-width:1120px;width:100%;margin:0 auto}
     .eyebrow{margin:0 0 .9rem;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;opacity:.9}
-    .hero h1{margin:0 0 1rem;font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,6vw,4.8rem);line-height:1.05;font-weight:500}
+    .hero h1{margin:0 0 1rem;color:#fff;font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,6vw,4.8rem);line-height:1.05;font-weight:500}
     .hero p{max-width:760px;margin:0;color:rgba(255,255,255,.92);line-height:1.8}
 
     .tabs{max-width:1120px;margin:-2rem auto 0;padding:0 clamp(1.25rem,4vw,3rem);position:relative;z-index:2}
@@ -80,6 +80,7 @@
     .cta{max-width:1120px;margin:0 auto 4.5rem;padding:0 clamp(1.25rem,4vw,3rem)}
     .cta-inner{background:#1f1719;color:#fff;padding:2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
     .cta-inner p{margin:0;color:#f1e6e8;line-height:1.7}
+    .cta-actions{display:flex;flex-wrap:wrap;gap:.8rem}
     .btn{display:inline-block;border:1px solid #fff;padding:.75rem 1.25rem;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;transition:all .3s ease}
     .btn:hover,.btn:focus-visible{background:var(--brand);border-color:var(--brand)}
   </style>
@@ -94,6 +95,7 @@
       <nav class="site-nav" id="site-nav" aria-label="Főmenü">
         <ul class="nav-list">
           <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+          <li><a href="arlista.html">Árlista</a></li>
           <li><a href="index.html#rolunk">Rólunk</a></li>
           <li><a href="index.html#termekeink" aria-current="page">Termékeink</a></li>
           <li><a href="index.html#galeria">Galéria</a></li>
@@ -164,7 +166,10 @@
     <section class="cta" aria-label="Kapcsolatfelvétel">
       <div class="cta-inner">
         <p>Ha szeretné, hogy a kezelése során MEI termékekkel dolgozzunk, jelezze időpontfoglaláskor.</p>
-        <a class="btn" href="index.html#kapcsolat">Kapcsolat</a>
+        <div class="cta-actions">
+          <a class="btn" href="arlista.html#arckezelesek">Árlista</a>
+          <a class="btn" href="index.html#kapcsolat">Kapcsolat</a>
+        </div>
       </div>
     </section>
   </main>

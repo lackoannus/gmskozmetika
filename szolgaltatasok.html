@@ -39,11 +39,11 @@
       .nav-list a{font-size:.95rem}
     }
 
-    main{padding-top:88px}
+    main{padding-top:0}
     .hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;color:#fff;padding:7rem clamp(1.25rem,4vw,3rem) 4rem;background:#3b2d31 url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat}
     .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,14,16,.58) 0%,rgba(24,14,16,.78) 100%)}
     .hero-inner{position:relative;max-width:1120px;width:100%;margin:0 auto}
-    .hero h1{margin:0 0 1rem;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.2rem,6vw,4.6rem);line-height:1.05}
+    .hero h1{margin:0 0 1rem;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.2rem,6vw,4.6rem);line-height:1.05}
     .hero p{max-width:800px;margin:0;line-height:1.8;color:rgba(255,255,255,.92)}
     .quick-nav{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.7rem}
     .quick-nav a{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.45);padding:.55rem .8rem;transition:all .3s ease}
@@ -69,6 +69,7 @@
     .cta-wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4.5rem}
     .cta{background:#1f1719;color:#fff;padding:2rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
     .cta p{margin:0;line-height:1.7;color:#f0e9eb}
+    .cta-actions{display:flex;flex-wrap:wrap;gap:.8rem}
     .btn{display:inline-block;border:1px solid #fff;padding:.75rem 1.25rem;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;transition:all .3s ease}
     .btn:hover,.btn:focus-visible{background:var(--brand);border-color:var(--brand)}
   </style>
@@ -83,6 +84,7 @@
       <nav class="site-nav" id="site-nav" aria-label="Főmenü">
         <ul class="nav-list">
           <li><a href="szolgaltatasok.html" aria-current="page">Szolgáltatások</a></li>
+          <li><a href="arlista.html">Árlista</a></li>
           <li><a href="index.html#about-and-products">Rólunk</a></li>
           <li><a href="index.html#termekeink">Termékeink</a></li>
           <li><a href="index.html#galeria">Galéria</a></li>
@@ -205,7 +207,10 @@
     <section class="cta-wrap" aria-label="Időpontfoglalás">
       <div class="cta">
         <p>Kérjen személyre szabott javaslatot és foglaljon időpontot a kívánt kezelésre.</p>
-        <a class="btn" href="tel:+36000000000">Időpontfoglalás telefonon</a>
+        <div class="cta-actions">
+          <a class="btn" href="arlista.html">Árlista megtekintése</a>
+          <a class="btn" href="tel:+36000000000">Időpontfoglalás telefonon</a>
+        </div>
       </div>
     </section>
   </main>
